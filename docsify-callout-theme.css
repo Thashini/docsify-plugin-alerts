@@ -1,0 +1,186 @@
+/**
+ * Docsify Callout Theme Plugin - CSS Styles
+ * Adds beautiful note/warning/tip callouts to your documentation
+ */
+
+/* Base callout styles */
+.docsify-callout {
+  margin: 1.5em 0;
+  padding: 1em 1em 1em 3em;
+  border-radius: 4px;
+  border-left: 4px solid;
+  position: relative;
+  background-color: #f8f9fa;
+}
+
+/* Note callout - Teal/Cyan style (as shown in image) */
+.docsify-callout.note {
+  border-left-color: #008080;
+  background-color: #f0fafa;
+}
+
+.docsify-callout.note::before {
+  content: "ⓘ";
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  color: #008080;
+  font-size: 0.2em;
+  font-weight: bold;
+}
+
+.docsify-callout.note .callout-title {
+  color: #008080;
+  font-weight: 600;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5em;
+}
+
+/* Warning callout - Orange/Red style */
+.docsify-callout.warning {
+  border-left-color: #e67e22;
+  background-color: #fef6e9;
+}
+
+.docsify-callout.warning::before {
+  content: "⚠";
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  color: #e67e22;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.docsify-callout.warning .callout-title {
+  color: #e67e22;
+  font-weight: 600;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5em;
+}
+
+/* Tip callout - Green style */
+.docsify-callout.tip {
+  border-left-color: #27ae60;
+  background-color: #e9f7ef;
+}
+
+.docsify-callout.tip::before {
+  content: "💡";
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  color: #27ae60;
+  font-size: 1.2em;
+}
+
+.docsify-callout.tip .callout-title {
+  color: #27ae60;
+  font-weight: 600;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5em;
+}
+
+/* Info callout - Blue style */
+.docsify-callout.info {
+  border-left-color: #3498db;
+  background-color: #ebf5fb;
+}
+
+.docsify-callout.info::before {
+  content: "ℹ";
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  color: #3498db;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.docsify-callout.info .callout-title {
+  color: #3498db;
+  font-weight: 600;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5em;
+}
+
+/* Danger/Error callout - Red style */
+.docsify-callout.danger {
+  border-left-color: #e74c3c;
+  background-color: #fdedec;
+}
+
+.docsify-callout.danger::before {
+  content: "✖";
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  color: #e74c3c;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.docsify-callout.danger .callout-title {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5em;
+}
+
+/* Callout content */
+.docsify-callout p {
+  margin: 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+.docsify-callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Emphasized text within callouts */
+.docsify-callout em,
+.docsify-callout i {
+  font-style: italic;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .docsify-callout {
+    background-color: #2d2d2d;
+  }
+  
+  .docsify-callout.note {
+    background-color: #1a3a3a;
+  }
+  
+  .docsify-callout.warning {
+    background-color: #3d2d1a;
+  }
+  
+  .docsify-callout.tip {
+    background-color: #1a3d2a;
+  }
+  
+  .docsify-callout.info {
+    background-color: #1a2d3d;
+  }
+  
+  .docsify-callout.danger {
+    background-color: #3d1a1a;
+  }
+  
+  .docsify-callout p {
+    color: #e0e0e0;
+  }
+}
