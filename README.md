@@ -2,7 +2,8 @@
 
 A beautiful Docsify plugin that adds styled callout boxes (NOTE, WARNING, TIP, INFO) to your documentation.
 
-![Demo Screenshot](demo-screenshot.png)
+<img width="1899" height="1095" alt="image" src="https://github.com/user-attachments/assets/7e3054bb-773b-4922-a3d0-4016831ea43f" />
+
 
 ## Features
 
