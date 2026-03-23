@@ -9,11 +9,25 @@ This page demonstrates all the callout types available in the Docsify Callout Pl
 Use the `NOTE` callout for general information and helpful tips.
 
 > [!NOTE]
-> To support the flexible use of your hardware, VBS4 supports an *Offline* use case, where a VBS World Server is not required.
+> To support the flexible use of your hardware, VBS4 supports an *Offline* use case, where a VBS World Server is not required. 
 
 ---
 
-## WARNING Callout
+> [!WARNING]
+> THIS IS TESTED BY THASHINI
+
+--- 
+
+
+> [!INFO]
+> This is tested by thashini '
+
+---
+
+## WARNINING
+
+---
+
 
 Use the `WARNING` callout to alert users about important issues or limitations.
 

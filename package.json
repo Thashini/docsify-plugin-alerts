@@ -1,0 +1,20 @@
+{
+  "name": "docsify_plugin_callouts",
+  "version": "1.0.0",
+  "description": "A beautiful Docsify plugin that adds styled callout boxes (NOTE, WARNING, TIP, INFO) to your documentation.",
+  "homepage": "https://github.com/Thashini/docsify-plugin-alerts#readme",
+  "bugs": {
+    "url": "https://github.com/Thashini/docsify-plugin-alerts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thashini/docsify-plugin-alerts.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "docsify-callout.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
