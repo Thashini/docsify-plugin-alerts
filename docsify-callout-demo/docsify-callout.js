@@ -31,78 +31,60 @@
     }
   };
 
-  // Get plugin configuration from Docsify
-  function getConfig() {
-    const docsify = window.$docsify || {};
-    return Object.assign({}, defaultConfig, docsify.callout || {});
+   function getConfig() {
+    var docsify = window.$docsify || {};
+    var config = docsify.callout || {};
+    return {
+      types: Object.assign({}, defaultConfig.types, config.types || {})
+    };
   }
 
-  /**
-   * Create the HTML for a callout
-   */
-  function createCallout(type, content) {
-    const config = getConfig();
-    const typeConfig = config.types[type] || config.types.note;
+   function createCallout(type, content) {
+    var config = getConfig();
+    var typeConfig = config.types[type] || config.types.note;
     
-    return `<div class="docsify-callout ${type}">
-<div class="callout-title">${typeConfig.title}</div>
-${content}
-</div>`;
+    return '<div class="docsify-callout ' + type + '">\n' +
+           '<div class="callout-title">' + typeConfig.title + '</div>\n' +
+           content + '\n' +
+           '</div>';
   }
 
-  /**
-   * Process markdown content to find and transform callouts
-   */
   function processCallouts(content) {
-    const config = getConfig();
-    const types = Object.keys(config.types);
-    const typePattern = types.join('|');
+    var config = getConfig();
+    var types = Object.keys(config.types);
+    var typePattern = types.join('|');
     
-    // Pattern to match callout blocks
-    // Matches lines starting with "> [!TYPE]" followed by lines starting with ">"
-    const pattern = new RegExp(
-      '(?:^|\n)> \\[!(' + typePattern + ')\\]\\s*(?:\n|$)((?:(?:>.*)?\n)*)',
+    // Fixed pattern - properly captures all consecutive > lines
+    var pattern = new RegExp(
+      '(^|\\n)> \\[!(' + typePattern + ')\\]\\s*\\n((?:>[^\\n]*(?:\\n|$))*)',
       'gi'
     );
 
-    return content.replace(pattern, function (match, type, body) {
-      // Process the body content - remove leading '> ' from each line
-      const lines = body.split('\n');
-      const processedLines = [];
+    return content.replace(pattern, function (match, prefix, type, body) {
+      var lines = body.split('\n');
+      var processedLines = [];
       
-      for (let line of lines) {
-        // Remove leading '> ' or '>' from each line
-        const cleaned = line.replace(/^>\s?/, '');
-        processedLines.push(cleaned);
+      for (var i = 0; i < lines.length; i++) {
+        processedLines.push(lines[i].replace(/^>\s?/, ''));
       }
       
-      // Join lines back together with newlines to preserve markdown formatting
-      const cleanBody = processedLines.join('\n').trim();
-      
-      // Return the callout HTML with newlines preserved for markdown processing
-      return '\n' + createCallout(type.toLowerCase(), cleanBody) + '\n';
+      var cleanBody = processedLines.join('\n').trim();
+      return prefix + createCallout(type.toLowerCase(), cleanBody);
     });
   }
 
-  /**
-   * Docsify plugin install function
-   */
-  function install(hook, vm) {
-    // Process content before it's rendered
-    hook.beforeEach(function (content, next) {
-      const processed = processCallouts(content);
-      next(processed);
+  var calloutPlugin = function (hook, vm) {
+    hook.beforeEach(function (markdown, next) {
+      try {
+        var processed = processCallouts(markdown);
+        next(processed);
+      } catch (err) {
+        console.error('Docsify Callout Plugin error:', err);
+        next(markdown);
+      }
     });
-  }
+  };
 
-  // Register the plugin with Docsify
-  if (typeof window !== 'undefined' && window.$docsify) {
-    window.$docsify.plugins = (window.$docsify.plugins || []).concat(install);
-  }
-
-  // Export for module systems
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = install;
-  }
-
-})();
+  $docsify = $docsify || {};
+  $docsify.plugins = [].concat(calloutPlugin, $docsify.plugins || []);
+ })();
